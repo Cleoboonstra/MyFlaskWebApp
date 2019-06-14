@@ -1,0 +1,131 @@
+<!-- Cleo -->
+<!-- NOT WORKING YET! -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Uploader</title>
+
+    <!-- BOOTSTRAP STYLESHEETS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- BOKEH STYLESHEETS -->
+    <link href="https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.css" rel="stylesheet" type="text/css">
+
+    <!-- BASIC SCRIPTS -->
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.js"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.js"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.js"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-1.2.0.min.js" type="text/javascript"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-1.2.0.min.js" type="text/javascript"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-tables-1.2.0.min.js" type="text/javascript"></script>
+    <script src="https://cdn.pydata.org/bokeh/release/bokeh-gl-1.2.0.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" type="text/javascript"></script>
+
+    <!-- VARIABLE SCRIPTS -->
+    {{ script | safe }}
+    {{ script2 | safe }}
+    {{ script3 | safe }}
+    {{ script4 | safe }}
+
+</head>
+<body>
+
+<!-- BEGIN NAVBAR -->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- BEGIN NAME -->
+  <a class="navbar-brand" href="#">DataViz</a>
+  <!-- END NAME -->
+
+  <!-- BEGIN INLINE FORM CONTAINER -->
+    <div class="container">
+
+        <!-- FORM -->
+           <form method="POST" enctype=multipart/form-data class="form-inline" >
+
+               <!-- BEGIN SELECT EXAMPLE -->
+                <div class="form-group">
+                    <div class="custom-file">
+                        <select name="myselect" class="custom-select mb-3">
+                          <option selected>Choose example datasets</option>
+                          <option value="GephiMatrix_author_similarity.csv">GephiMatrix author similarity</option>
+                          <option value="GephiMatrix_co-authorship.csv">GephiMatrix co-authorship</option>
+                          <option value="GephiMatrix_co-citation.csv">GephiMatrix co-citation</option>
+                        </select>
+                    </div>
+                </div>
+               <!-- END SELECT EXAMPLE -->
+
+               <!-- BEGIN SUBMIT -->
+               <div class="form-group">
+                  <div class="custom-file">
+                      <input type=submit class="btn btn-primary" value=Visualize style="margin-left: 10px;">
+                  </div>
+              </div>
+               <!-- END SUBMIT -->
+
+           </form>
+        <!-- END FORM -->
+
+    </div>
+    <!-- END INLINE FORM CONTAINER -->
+</nav>
+<!-- END NAVBAR -->
+
+
+
+<br><br>
+<!-- BEGIN TABS -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="matrix-tab" data-toggle="tab" href="#matrix" role="tab" aria-controls="matrix" aria-selected="true">Matrix</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="matrix2-tab" data-toggle="tab" href="#matrix2" role="tab" aria-controls="matrix2" aria-selected="false">Matrix Reorder</a>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" id="node-tab" data-toggle="tab" href="#node" role="tab" aria-controls="node" aria-selected="false">Node</a>
+  </li>
+  </li>
+    <li class="nav-item">
+    <a class="nav-link" id="node-bundle-tab" data-toggle="tab" href="#node_bundle" role="tab" aria-controls="node_bundle" aria-selected="false">Node Bundle</a>
+  </li>
+</ul>
+<!-- END TABS -->
+
+<!-- BEGIN DIVS -->
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="matrix" role="tabpanel" aria-labelledby="matrix-tab">{{ div | safe }}</div>
+  <div class="tab-pane fade" id="matrix2" role="tabpanel" aria-labelledby="matrix2-tab">{{ div2 | safe }}</div>
+  <div class="tab-pane fade" id="node" role="tabpanel" aria-labelledby="node-tab">{{ div3 | safe }}</div>
+  <div class="tab-pane fade" id="node_bundle" role="tabpanel" aria-labelledby="node-bundle-tab">{{ div4 | safe }}</div>
+</div>
+<!-- END DIVS -->
+
+
+<!-- SCRIPT TABS -->
+<script>
+  $(function () {
+    $('#myTab li:last-child a').tab('show')
+  })
+</script>
+
+<!-- SCRIPT SELECTED FILE -->
+<script>
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+
+</body>
+</html>
