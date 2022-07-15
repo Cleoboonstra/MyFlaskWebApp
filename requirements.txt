@@ -9,7 +9,7 @@ dask==1.2.2
 datashader==0.7.0
 datashape==0.5.2
 decorator==4.4.0
-distributed==1.28.1
+distributed==2021.10.0
 Flask==1.0.3
 HeapDict==1.0.0
 holoviews==1.12.3
